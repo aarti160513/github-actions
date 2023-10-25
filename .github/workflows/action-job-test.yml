@@ -44,8 +44,8 @@ jobs:
         run: echo "🍏 This job's status is ${{ job.status }}."
 
       - name: Install nodejs
-        uses: - uses: actions/setup-node@v3
-       with:
+        uses: actions/setup-node@v3
+        with:
           node-version: 18
 
       
