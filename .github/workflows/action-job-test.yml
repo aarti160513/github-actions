@@ -20,15 +20,15 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v4
 
-      - name: Install Java
-        uses: actions/setup-java@v3
-        with:
-          distribution: 'temurin' # See 'Supported distributions' for available options
-          java-version: '17'
+      # - name: Install Java
+      #   uses: actions/setup-java@v3
+      #   with:
+      #     distribution: 'temurin' # See 'Supported distributions' for available options
+      #     java-version: '17'
 
-      - name: Display Java version
-        run: |
-          java -version
+      # - name: Display Java version
+      #   run: |
+      #     java -version
 
     # - name: Install java
     #     run: |
@@ -42,3 +42,10 @@ jobs:
       
       - name: Job status information
         run: echo "🍏 This job's status is ${{ job.status }}."
+
+      - name: Install nodejs
+        uses: - uses: actions/setup-node@v3
+       with:
+          node-version: 18
+
+      
