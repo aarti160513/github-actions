@@ -20,10 +20,22 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v4
 
-      - name: Install java
+      - name: Install Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin' # See 'Supported distributions' for available options
+          java-version: '17'
+
+      - name: Display Java version
         run: |
-           sudo apt install default-jre
-           java -version 
+          java -version
+
+    # - name: Install java
+    #     run: |
+    #        sudo apt install default-jre
+    #        java -version 
+
+        
       # - name: Test shell script run
       #   run: |
       #     sh health_check.sh
