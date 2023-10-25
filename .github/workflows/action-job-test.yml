@@ -40,12 +40,16 @@ jobs:
       #   run: |
       #     sh health_check.sh
       
-      - name: Job status information
-        run: echo "🍏 This job's status is ${{ job.status }}."
+      
 
       - name: Install nodejs
         uses: actions/setup-node@v3
         with:
           node-version: 18
+      
+      - name: check node version
+         run: nodejs -version
 
+      - name: Job status information
+        run: echo "🍏 This job's status is ${{ job.status }}."
       
