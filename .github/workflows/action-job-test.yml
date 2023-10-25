@@ -20,9 +20,13 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v4
 
-      - name: Test shell script run
+      - name: Install java
         run: |
-          sh health_check.sh
+           sudo apt install default-jre
+           java -version 
+      # - name: Test shell script run
+      #   run: |
+      #     sh health_check.sh
       
       - name: Job status information
         run: echo "🍏 This job's status is ${{ job.status }}."
