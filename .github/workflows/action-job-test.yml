@@ -20,35 +20,21 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v4
 
-      # - name: Install Java
-      #   uses: actions/setup-java@v3
-      #   with:
-      #     distribution: 'temurin' # See 'Supported distributions' for available options
-      #     java-version: '17'
-
-      # - name: Display Java version
-      #   run: |
-      #     java -version
-
-    # - name: Install java
-    #     run: |
-    #        sudo apt install default-jre
-    #        java -version 
-
-        
-      # - name: Test shell script run
-      #   run: |
-      #     sh health_check.sh
-      
-      
+      - name: Install Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin' # See 'Supported distributions' for available options
+          java-version: '17'
 
       - name: Install nodejs
         uses: actions/setup-node@v3
         with:
           node-version: 18
-      
-      - name: check node version
-         run: nodejs -version
+     
+      - name: check node & java  version
+        run: |
+          node -v
+          java -version
 
       - name: Job status information
         run: echo "🍏 This job's status is ${{ job.status }}."
