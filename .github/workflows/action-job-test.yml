@@ -33,7 +33,7 @@ jobs:
      
       - name: check node & java  version
         run: |
-          node -v
+          ([ $(node -v) == "v18.18.2" ] && echo "Version test sucessfull") || exit 1
           java -version
 
       - name: Job status information
