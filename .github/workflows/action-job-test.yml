@@ -15,7 +15,7 @@ jobs:
       run:
         shell: bash
     container:
-      image: ubuntu:latest
+      image: centos:latest
       credentials:
         username: ${{ secrets.docker_login }}
         password: ${{ secrets.docker_password }}
