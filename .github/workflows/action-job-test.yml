@@ -1,7 +1,7 @@
 name: GitHub Actions Demo
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
-on : workflow_dispatch
-# on: 
+on: workflow_dispatch
+# on:
 #   push:
 #     branches:
 #       - main
@@ -11,36 +11,40 @@ on : workflow_dispatch
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
     container:
-      image: debain:latest
+      image: ubuntu:latest
+      credentials:
+        username: ${{ secrets.docker_login }}
+        password: ${{ secrets.docker_password }}
     steps:
-      
       - name: Information on job run
         run: |
           echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
           echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
           echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
-      
+
       - name: Check out repository code
         uses: actions/checkout@v4
 
       - name: Install Java
         uses: actions/setup-java@v3
         with:
-          distribution: 'temurin' # See 'Supported distributions' for available options
-          java-version: '17'
+          distribution: "temurin" # See 'Supported distributions' for available options
+          java-version: "17"
 
       - name: Install nodejs
         uses: actions/setup-node@v3
         with:
           node-version: 18
-     
+
       - name: check node & java  version
         run: |
           ([ $(node -v) == "v18.18.2" ] && echo "Node version test sucessfull") || exit 1
-          java_version=$(java -version 2>&1 | grep 'openjdk' | awk '{print $3}' | sed 's/\"//g')
-          ([ $java_version == "17.0.8.1" ] && echo "Java version test sucessfull") || exit 1
+          java_version=$(java -version 2>&1 | grep 'openjdk' | awk '{print $3}' | sed 's/\"//g'| cut -d '.' -f1)
+          ([ "$java_version" == "17" ] && echo "Java version test sucessfull") || exit 1
 
       - name: Job status information
         run: echo "🍏 This job's status is ${{ job.status }}."
-      
